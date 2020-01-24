@@ -5,25 +5,29 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="#" th:action="@{/example3/addperson}" th:object="${persona}" method="post">
-	
+	<form action="#" th:action="@{/example3/addperson}"
+		th:object="${persona}" method="post">
 		<p>
-			Nombre: <input type="text" th:field="*{nombre}"/>
+			Nombre: <input type="text" th:field="*{nombre}" />
 		</p>
 		
-		<p>
-			Apellido: <input type="text" th:field="*{apellido}"/>
-		</p>
+		<p th:if="${#fields.hasErrors('nombre')}" th:error="*{nombre}">Error en el nombre</p>
 		
 		<p>
-			Edad: <input type="number" th:field="*{edad}"/>
+			Apellido: <input type="text" th:field="*{apellido}" />
 		</p>
 		
+		<p th:if="${#fields.hasErrors('apellido')}" th:error="*{apellido}">Error en el apellido</p>
+		
 		<p>
-			<input type="submit" value="Submit"/>
+			Edad: <input type="number" th:field="*{edad}" />
 		</p>
+		
+		<p th:if="${#fields.hasErrors('edad')}" th:error="*{edad}">Error en la edad</p>
 
-		
+		<p>
+			<input type="submit" value="Submit" />
+		</p>
 	</form>
 </body>
 </html>

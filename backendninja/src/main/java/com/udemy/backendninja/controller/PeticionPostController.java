@@ -1,9 +1,12 @@
-package com.udemy.backendninja.controller;
+	package com.udemy.backendninja.controller;
+
+import javax.validation.Valid;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,12 +38,19 @@ public class PeticionPostController {
 	}
 	
 	@PostMapping("/addperson")
-	public ModelAndView addPerson(@ModelAttribute("persona") Persona persona ) {
+	public ModelAndView addPerson(@Valid @ModelAttribute("persona") Persona persona , BindingResult bindingResult) {
 		LOGGER.info("METHOD: 'addperson ' -- PARAMS: '" + persona + "'");
 		ModelAndView mav = new ModelAndView(RESULT_VIEW);
-		mav.addObject("persona", persona);
-		LOGGER.info("TEMPLATE: '" + RESULT_VIEW + "' -- DATA: '" + persona + "'");
+		if (bindingResult.hasErrors()) {
+			mav.setViewName(FORM_VIEW);
+		} else {
+			mav.setViewName(RESULT_VIEW);
+			mav.addObject("persona", persona);
+			LOGGER.info("TEMPLATE: '" + RESULT_VIEW + "' -- DATA: '" + persona + "'");
+			
+		}
 		return mav;
+		
 	}
 	
 	// Redirecciones
