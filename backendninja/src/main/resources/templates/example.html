@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Ejemplo Controladores</h1>
+	<h3>Mostrar Listado</h3>
+	<table>
+		<thead>
+			<tr>
+				<th>NOMBRE</th>
+				<th>APELLIDO</th>
+				<th>EDAD</th>
+			</tr>
+		</thead>
+		<tbody th:each="persona : ${personas}">
+			<tr>
+				<th th:text="${persona.nombre}"></th>
+				<th th:text="${persona.apellido}"></th>
+				<th th:text="${persona.edad}"></th>
+			</tr>
+		</tbody>
+
+	</table>
+</body>
+</html>
