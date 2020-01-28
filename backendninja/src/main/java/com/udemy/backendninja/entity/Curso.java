@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "curso")
+@Table(name = "cursos")
 public class Curso {
 	@Id
 	@GeneratedValue
@@ -83,4 +83,10 @@ public class Curso {
 		this.horas = horas;
 	}
 
+	@Override
+	public String toString() {
+		return "Curso [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio
+				+ ", horas=" + horas + "]";
+	}
+	
 }
